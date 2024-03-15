@@ -5,25 +5,9 @@
 
 using namespace std;
 
-string pad(string message, int n = 1) {
-    int end = message.length() < 448 ? 448 : 512;
-
-    if (n == 1) {
-        message += "1";
-    }
-
-    for (int start = message.length(); start < end; start++) {
-        message += "0";
-    }
-
-    if (message.length() > 448) {
-        message += pad(message.substr(end), n + 1);
-    }
-    
-    return message;
-}
 
 int main() {
-    string str = "ddddddddddddddddddddddddddddddddddddddddddddddddddddddd";
+    string str = "hello, world!";
+    cout << stringToBinary(str) << endl;
     cout << pad(stringToBinary(str));
 }
