@@ -1,8 +1,13 @@
-#include <iostream>
+#include "SHA256.h"
+#include <bitset>
+#include <string>
 
-using namespace std;
+std::string stringToBinary(const std::string str) {
+    std::string result;
 
+    for (char c : str) {
+        result += std::bitset<8>(c).to_string();
+    }
 
-int main() {
-    cout << "hello world" << endl;
+    return result;
 }
