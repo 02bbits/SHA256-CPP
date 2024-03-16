@@ -2,9 +2,11 @@
 #define SHA256_H
 
 #include <string>
+#include <vector>
+#include <bitset>
 
-std::string stringToBinary(const std::string str);
+std::vector<std::bitset<8>> stringToBinary(const std::string str);
 
-std::string pad(std::string message, int n = 1);
+std::vector<std::bitset<8>> pad(std::vector<std::bitset<8>> message, int n = 1);
 
 #endif

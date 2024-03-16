@@ -2,11 +2,12 @@
 #include <string>
 #include "SHA256.cpp"
 #include <bitset>
+#include <vector>
 
 using namespace std;
 
 std::bitset<8> rotr(char x, int n) {
-	return (std::bitset<8>(x) >> n) | (std::bitset<8>(x) << (32 - n));
+	return (std::bitset<8>(x) >> n) | (std::bitset<8>(x) << (8 - n));
 }
 
 std::bitset<8> sig0(char x) {
@@ -18,10 +19,11 @@ std::bitset<8> sig1(char x) {
 }
 
 int main() {
-    char x = 'f';
-    cout << std::bitset<8>(x) << endl;
-    cout << sig0('c') << endl;
-    cout << sig1('c') << endl;
-    return 0;
+    string str = "hello";
+    vector<bitset<8>> vec = stringToBinary(str);
+    vec = pad(vec);
 
+    for (int i = 0; i < vec.size(); i++) {
+        cout << vec[i];
+    }
 }
