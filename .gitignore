@@ -2,3 +2,4 @@
 References/
 *.exe
 .vscode/
+/test.cpp
