@@ -30,5 +30,6 @@ std::vector<std::bitset<8>> pad(std::vector<std::bitset<8>> message, int n) {
         message.insert(message.end(), message2.begin(), message2.end());
     }
     
+    
     return message;
 }
