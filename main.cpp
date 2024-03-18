@@ -47,28 +47,42 @@ std::bitset<32> add(std::bitset<32> x1, std::bitset<32> x2, std::bitset<32> x3, 
     return x1;
 }
 
+std::vector<std::bitset<32>> getEntrys(std::vector<std::bitset<8>> messageBlocks) {
+    std::vector<std::bitset<32>> entries;
+
+    for (int i = 0; i < messageBlocks.size(); i += 4) {
+        entries.push_back(merge(messageBlocks[i], messageBlocks[i + 1], messageBlocks[i + 2], messageBlocks[i + 3]));
+    }
+
+    return entries;
+}   
+
 std::vector<std::bitset<8>> getBigEndian(const short ogMessageLength) {
     std::bitset<64> length = ogMessageLength;
     std::vector<std::bitset<8>> bigEndian;
-    bigEndian.push_back(bitset<8>((length >> 56).to_ulong()));
-    bigEndian.push_back(bitset<8>((length >> 48).to_ulong()));
-    bigEndian.push_back(bitset<8>((length >> 40).to_ulong()));
-    bigEndian.push_back(bitset<8>((length >> 32).to_ulong()));
-    bigEndian.push_back(bitset<8>((length >> 24).to_ulong()));
-    bigEndian.push_back(bitset<8>((length >> 16).to_ulong()));
-    bigEndian.push_back(bitset<8>((length >> 8).to_ulong()));
-    bigEndian.push_back(bitset<8>((length).to_ulong()));
+
+    for (int i = 56; i >= 0; i -= 8) {
+        std::bitset<8> byte((length >> i).to_ulong());
+        bigEndian.push_back(byte);
+    }
 
     return bigEndian;
 }
+
 int main() {
-    string str = "hello me!";
-    vector<bitset<8>> v = stringToBinary(str);
+    string str = "hello world";
+    std::vector<std::bitset<8>> messageBlocks = pad(stringToBinary(str));
+    std::vector<std::bitset<8>> bigEndian = getBigEndian(str.size() * 8);
+    messageBlocks.insert(messageBlocks.end(), bigEndian.begin(), bigEndian.end());
+    std::vector<std::bitset<32>> entries = getEntrys(messageBlocks);
 
-    std::vector<std::bitset<8>> bigEndian = getBigEndian(v.size() * 8);
 
-    for (int i = 0; i < bigEndian.size(); i++) {
-        cout << bigEndian[i] << endl;
+    for (bitset<8> i : messageBlocks) {
+        std::cout << i;
     }
+    cout << std::endl;
 
+    for (bitset<32> i : entries) {
+        std::cout << i << endl;
+    }
 }
