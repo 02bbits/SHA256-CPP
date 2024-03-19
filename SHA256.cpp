@@ -56,20 +56,63 @@ std::bitset<32> merge(std::bitset<8>(x1), std::bitset<8>(x2), std::bitset<8>(x3)
 
 std::bitset<32> add(std::bitset<32> x1, std::bitset<32> x2, std::bitset<32> x3, std::bitset<32> x4) {
     std::bitset<32> carry;
+
     while (x2 != 0) {
         carry = x1 & x2;
         x1 = x1 ^ x2;
         x2  = (carry << 1);
     }
+
     while (x3!= 0) {
         carry = x1 & x3;
         x1 = x1 ^ x3;
         x3  = (carry << 1);
     }
+
     while (x4!= 0) {
         carry = x1 & x4;
         x1 = x1 ^ x4;
         x4  = (carry << 1);
+    }
+    return x1;
+}
+
+std::bitset<32> add(std::bitset<32> x1, std::bitset<32> x2, std::bitset<32> x3, std::bitset<32> x4, std::bitset<32> x5) {
+    std::bitset<32> carry;
+
+    while (x2 != 0) {
+        carry = x1 & x2;
+        x1 = x1 ^ x2;
+        x2  = (carry << 1);
+    }
+
+    while (x3!= 0) {
+        carry = x1 & x3;
+        x1 = x1 ^ x3;
+        x3  = (carry << 1);
+    }
+
+    while (x4!= 0) {
+        carry = x1 & x4;
+        x1 = x1 ^ x4;
+        x4  = (carry << 1);
+    }
+
+    while (x5!= 0) {
+    carry = x1 & x5;
+    x1 = x1 ^ x5;
+    x5  = (carry << 1);
+    }
+    return x1;
+}
+
+std::bitset<32> add(std::bitset<32> x1, std::bitset<32> x2) {
+    std::bitset<32> carry;
+    
+    while (x2 != 0) {
+        carry = x1 & x2;
+        x1 = x1 ^ x2;
+        x2  = (carry << 1);
     }
     return x1;
 }
