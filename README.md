@@ -18,6 +18,8 @@ The purpose of this project is to provide a comprehensive understanding of SHA-2
 3. Compile and run:
    ```sh
    g++ .\main.cpp -o main
+   ```
+   ```sh
    .\main.exe
    ```
    
