@@ -6,7 +6,7 @@ This repository contains an implementation of the SHA-256 cryptographic hash fun
 ## Purpose
 The purpose of this project is to provide a comprehensive understanding of SHA-256 and its implementation in C++. It serves as a mid-term assignment project for learning and demonstrating concepts related to cryptography, hashing algorithms, and C++ programming.
 
-### Installation
+## Installation & Run
 1. Clone the repository:
    ```sh
    git clone https://github.com/02bbits/SHA256-CPP.git
@@ -14,5 +14,10 @@ The purpose of this project is to provide a comprehensive understanding of SHA-2
 2. Change to the directory:
    ```sh
    cd SHA256-CPP
+   ```
+3. Compile and run:
+   ```sh
+   g++ .\main.cpp -o main
+   .\main.exe
    ```
    
